@@ -1,9 +1,9 @@
-body {
-  /* background-color: #011995 */
+.select {
+  width: 96%;
 }
 
-/* .platform {
-  padding-left: 300px;
-  padding-top: 300px;
- 
-} */
+.submit {
+
+  background-color: hsl(264, 7%, 87%);
+  width: 96%;
+}
