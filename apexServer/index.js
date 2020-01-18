@@ -3,13 +3,12 @@ const express = require('express')
 const morgan  = require('morgan')
 const app     = express()
 
-app.get('/', (req, res) => {
+app.get('/api/v1/profile/:platform/:gamertag', (req, res) => {
 
-  res.send('<h1>Hello Kern</h1>')
-
-})
-
-const PORT = process.env.PORT
+  console.log(req.params.gamertag, req.params.platform)
+  res.send('Hello Kern')
+ })
+const PORT = process.env.PORT || 4001
 
 app.listen(PORT, () => {
   console.log( `Server running on port ${PORT}`)
