@@ -3,11 +3,9 @@ const express = require('express')
 const morgan  = require('morgan')
 const app     = express()
 
-app.get('/api/v1/profile/:platform/:gamertag', (req, res) => {
+// Profile Routes
+app.use('/api/v1/profile', require('./routes/profile'))
 
-  console.log(req.params.gamertag, req.params.platform)
-  res.send('Hello Kern')
- })
 const PORT = process.env.PORT || 4001
 
 app.listen(PORT, () => {
