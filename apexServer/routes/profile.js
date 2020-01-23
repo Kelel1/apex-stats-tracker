@@ -3,10 +3,41 @@ const fetch   = require('node-fetch')
 const router  = express.Router()
 
 
-router.get('/:platform/:gamertag', (req, res) => {
+router.get('/:platform/:gamertag', async (req, res) => {
 
-  console.log(req.params.gamertag, req.params.platform)
-  res.send('Hello Kern')
+  try {
+
+    const headers = {
+      'TRN-Api-Key': process.env.TRACKER_API_KEY
+    }
+
+    const { platform, gamertag } = req.params
+
+    const response = await fetch(`${process.env.TRACKER_API_URL}/profile/${platform}/
+    ${gamertag}`,{
+      headers 
+    })
+
+    const data = await response.json()
+
+    if (data.errors && data.errors.length > 0) {
+      return res.status(404).json({
+        message: 'Profile not found'
+      })
+    }
+
+    res.json(data)
+
+  } catch(err) {
+
+    console.error(err)
+    res.status(500).json({
+      message: 'Server Error'
+    })
+  }
+   {
+
+  }
 })
 
 module.exports = router
